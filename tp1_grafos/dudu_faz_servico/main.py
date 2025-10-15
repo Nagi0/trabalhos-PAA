@@ -1,4 +1,6 @@
+import os
 import time
+import psutil
 from dfs_search import Graph
 
 
@@ -15,6 +17,7 @@ def check_cycles_full_graph(graph: Graph):
 
 if __name__ == "__main__":
     start_time = time.perf_counter()
+    process = psutil.Process(os.getpid())
     data = open("tp1_grafos/dudu_faz_servico/data.txt").read().split()
     iterator = iter(data)
     num_problems = int(next(iterator))
@@ -30,5 +33,8 @@ if __name__ == "__main__":
 
         check_cycles_full_graph(graph)
 
+    memory_info = process.memory_info()
     end_time = time.perf_counter()
+    print(f"Resident Set Size (RSS): {memory_info.rss / (1024 * 1024):.2f} MiB")
+    print(f"Virtual Memory Size (VMS): {memory_info.vms / (1024 * 1024):.2f} MiB")
     print(f"Execution time: {end_time-start_time}")
