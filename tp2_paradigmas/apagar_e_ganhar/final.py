@@ -1,3 +1,6 @@
+import sys
+
+
 class Searcher:
     def __init__(self, num_n, num_d):
         self.num_n = num_n
@@ -57,3 +60,20 @@ class Searcher:
 
         best_digits = "".join(best_digits)
         return best_digits
+
+
+if __name__ == "__main__":
+    data = sys.stdin.read().splitlines()
+    iterator = iter(data)
+    while True:
+        try:
+            info = next(iterator)
+            if info == "0 0":
+                break
+        except:
+            break
+        total_num, erase_num = list(map(int, info.split(" ")))
+        searcher = Searcher(total_num, erase_num)
+        number = next(iterator)
+
+        sys.stdout.writelines(f"{searcher.greedy_solution(number)}\n")

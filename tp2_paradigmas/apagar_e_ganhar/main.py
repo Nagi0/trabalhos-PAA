@@ -15,8 +15,8 @@ if __name__ == "__main__":
             break
         total_num, erase_num = list(map(int, info.split(" ")))
         searcher = Searcher(total_num, erase_num)
-        number = int(next(iterator))
+        number = next(iterator)
 
-        sys.stdout.writelines(f"{searcher.find_best_numbers(number)}\n")
+        sys.stdout.writelines(f"{searcher.greedy_solution(number)}\n")
     end_time = time.perf_counter()
     print(f"Execution time: {end_time - start_time}")
